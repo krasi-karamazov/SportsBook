@@ -44,6 +44,8 @@ The Clean Architecture is used because I really like the structure as it's reall
 
 **UI** - for the UI layer I decided to use Compose, as I will be the first to say it, I need the practice. I believe I can still do some more optimizations for the big Sports book list, but it works as intended for now. In any case, I did my best to manage state as high in the chain as I could, leaving the smaller componens stateless (like EventGrid item), which does help with optimization, not to mention sanity.
 
+**Modularity** - The project is separated into modules with clear and precise roles. This ultimately helps wwith build times, developer experience and promotes the actual separation of concerns. Keeping modules as small as possible with as little responsibilities as possible has huge benefits in my experience, even if we're talking about developer QOL. Usually I seperate my projects even more, but for this project I decided that I didn't need any more and that this is clean enough, without going overboard.
+
 **Module list**
 ```
 app/                  # Main application module (themes, colors, entry point)
