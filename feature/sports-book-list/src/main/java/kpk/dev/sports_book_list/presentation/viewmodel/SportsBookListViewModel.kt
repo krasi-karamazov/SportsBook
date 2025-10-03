@@ -13,6 +13,9 @@ import kpk.dev.sports_book_list.domain.model.Sport
 import kpk.dev.sports_book_list.domain.usecase.GetSportsBookDataUseCase
 import kpk.dev.sports_book_list.domain.usecase.SaveFavoriteEventUseCase
 import kpk.dev.sports_book_list.presentation.events.UIEvent
+import java.util.Collections
+import java.util.LinkedHashMap
+import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 
 class SportsBookListViewModel @Inject constructor(
@@ -22,9 +25,9 @@ class SportsBookListViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow<UIEvent>(UIEvent.Idle)
     val state: StateFlow<UIEvent> = _state
-    var memoryCacheData = mutableMapOf<Sport, List<Event>>()
+    var memoryCacheData = Collections.synchronizedMap(LinkedHashMap<Sport, List<Event>>())
     // Add a map to track filter switch state for each sport
-    val favoriteFilterMap = mutableMapOf<String, Boolean>()
+    val favoriteFilterMap = ConcurrentHashMap<String, Boolean>()
 
     fun loadSportsBook() {
         _state.value = UIEvent.Loading
